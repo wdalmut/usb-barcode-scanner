@@ -10,7 +10,7 @@ npm --save usb-barcode-transform
 
 ```js
 const fs = require('fs');
-const Scanner = require('./scanner');
+const Scanner = require('usb-barcode-transform');
 
 const stream = fs.createReadStream("/dev/input/by-id/usb-USB_Adapter_USB_Device-event-kbd",{
   flags: 'r',
