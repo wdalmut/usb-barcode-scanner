@@ -1,6 +1,6 @@
 const keys = {
   0: String.fromCharCode(0x00),
-  1: "ESC",
+  1: String.fromCharCode(0x27),
   2: "1",
   3: "2",
   4: "3",
