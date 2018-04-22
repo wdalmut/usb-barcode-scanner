@@ -1,5 +1,7 @@
 # Barcode USB scanner stream
 
+[![Build Status](https://travis-ci.org/wdalmut/usb-barcode-scanner.svg?branch=master)](https://travis-ci.org/wdalmut/usb-barcode-scanner)
+
 A NodeJs transform stream to convert a barcode (from an USB scanner) into a string representation.
 
 ```sh
