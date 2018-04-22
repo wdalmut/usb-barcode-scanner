@@ -1,4 +1,4 @@
-const ev = require('./keys');
+const ev = require('./ev');
 const { Transform } = require('stream');
 
 class BarcodeTransform extends Transform {
@@ -11,7 +11,7 @@ class BarcodeTransform extends Transform {
     let offset = this.arch === 64 ? 16 : 8;
 
     let type = buf.readUInt16LE(offset);
-    let code = ev.code[buf.readUInt16LE(offset + 2)];
+    let code = ev.toAscii(buf.readUInt16LE(offset + 2));
     let value = buf.readInt32LE(offset + 4);
 
     if (value == ev.value.KEYPRESS) {

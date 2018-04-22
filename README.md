@@ -24,7 +24,8 @@ stream.pipe(new Scanner()).pipe(process.stdout);
 
 ## Basics
 
-The event struct in the linux kernel have this interface
+The [event struct](https://www.kernel.org/doc/Documentation/input/input.txt) in
+the linux kernel have this interface
 
 ```c
 struct input_event {

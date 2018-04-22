@@ -1,6 +1,6 @@
 {
   "name": "usb-barcode-transform",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A NodeJs transform stream to convert a barcode (from an USB scanner) into a string representation.",
   "main": "index.js",
   "scripts": {
