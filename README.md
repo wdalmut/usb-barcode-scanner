@@ -8,7 +8,7 @@ A NodeJs transform stream to convert a barcode (from an USB scanner) into a stri
 npm --save usb-barcode-transform
 ```
 
-## Example
+## Scanner Example
 
 ```js
 const fs = require('fs');
@@ -21,8 +21,35 @@ const stream = fs.createReadStream("/dev/input/by-id/usb-USB_Adapter_USB_Device-
   autoClose: true
 });
 
-stream.pipe(new Scanner()).pipe(process.stdout);
+stream
+  .pipe(new Scanner())
+  .pipe(process.stdout);
 ```
+
+## Groupped Scanner Example
+
+The scanner will send every single character as an ASCII character. The `Group`
+stream estract only visible characters and exclude any escape sequence.
+
+```js
+const fs = require('fs');
+const barcode = require('usb-barcode-transform');
+
+const stream = fs.createReadStream("/dev/input/by-id/usb-USB_Adapter_USB_Device-event-kbd",{
+  flags: 'r',
+  encoding: null,
+  fd: null,
+  autoClose: true
+});
+
+stream
+  .pipe(new barcode.Scanner())
+  .pipe(new barcode.Group())
+  .pipe(process.stdout);
+```
+
+The `Group` send a single event that represent the decoded value (1234567)
+without any escape sequence or carriage return `\n`.
 
 ## Basics
 
