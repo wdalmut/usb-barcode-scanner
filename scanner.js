@@ -1,4 +1,4 @@
-const codes = require('./keys');
+const ev = require('./keys');
 const { Transform } = require('stream');
 
 class BarcodeTransform extends Transform {
@@ -11,10 +11,10 @@ class BarcodeTransform extends Transform {
     let offset = this.arch === 64 ? 16 : 8;
 
     let type = buf.readUInt16LE(offset);
-    let code = codes[buf.readUInt16LE(offset + 2)];
+    let code = ev.code[buf.readUInt16LE(offset + 2)];
     let value = buf.readInt32LE(offset + 4);
 
-    if (value==1) {
+    if (value == ev.value.KEYPRESS) {
       return code;
     }
   }
@@ -22,14 +22,14 @@ class BarcodeTransform extends Transform {
   _transform(chunk, encoding, callback) {
     let size = (this.arch === 64 ? 24 : 16);
 
-    let scans = [];
+    let chars = [];
     for (let i=0; i<chunk.length; i+=size) {
       let scan = this._parse(chunk.slice(i, i+size));
 
-      scans.push(scan);
+      chars.push(scan);
     }
 
-    callback(null, scans.filter((i) => i).join(''));
+    callback(null, chars.filter((i) => i).join(''));
   }
 }
 

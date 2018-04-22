@@ -1,10 +1,10 @@
 {
   "name": "usb-barcode-transform",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A NodeJs transform stream to convert a barcode (from an USB scanner) into a string representation.",
-  "main": "scanner.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/jasmine"
   },
   "keywords": [
     "barcode",
@@ -13,5 +13,8 @@
     "keyboard"
   ],
   "author": "Walter Dal Mut <walter.dalmut@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jasmine": "^3.1.0"
+  }
 }
