@@ -26,10 +26,13 @@ stream
   .pipe(process.stdout);
 ```
 
+The scanner will send every single character as an ASCII character.
+
 ## Groupped Scanner Example
 
-The scanner will send every single character as an ASCII character. The `Group`
-stream estract only visible characters and exclude any escape sequence.
+The `Group` stream will send a single event for each string representation
+(1234567) identified by a newline `\n` char stripping out any escape character
+(CTRL-C, ESC, etc).
 
 ```js
 const fs = require('fs');
